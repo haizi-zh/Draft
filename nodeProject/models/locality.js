@@ -39,11 +39,13 @@ LocalitySchema.statics.getTargetData = function(callback) {
 // 更新数据，标记完成的数据
 LocalitySchema.statics.setDoneTag = function(id, callback){
     // 测试是否可以直接传id？
+    console.log(id);
     this.update({_id:id},{isDone:true},{multi:false}, function(err, data){
         var state = true;
         if (err) {
             state = false
         }
+        console.log(state);
         callback && callback(state)
     })
 };
