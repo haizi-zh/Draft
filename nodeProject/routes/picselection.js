@@ -2,8 +2,12 @@ var express = require('express');
 var router = express.Router();
 var Locality = require('../models').Locality;
 
-/* GET users listing. */
 router.get('/', function(req, res) {
+    res.render('picselection');
+});
+
+/* GET users listing. */
+router.get('/ajax', function(req, res) {
     console.log('----get----');
     Locality.getTargetData(function(data) {
         if (!data) {
@@ -33,7 +37,7 @@ router.get('/', function(req, res) {
     });
 });
 
-router.post('/', function(req, res) {
+router.post('/ajax', function(req, res) {
     console.log('----post----');
     var postData = req.body,
         id = postData.poiId,
