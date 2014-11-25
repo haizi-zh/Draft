@@ -74,6 +74,7 @@ $(function(){
                             '</div>';
                             $('form').append(imgBlock);
                         }
+                        // $('#submit').attr('data-submit','false');
                     }else{
                         alert('Failed to get data!');
                     }
@@ -85,5 +86,8 @@ $(function(){
         }else{
             alert('请先提交改动!');
         }
-    })
+    });
+    $(window).load(function(){
+        $("#next").trigger('click');
+    });
 })
