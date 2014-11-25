@@ -31,6 +31,7 @@ router.get('/ajax', function(req, res) {
                         done: done,
                         rest: rest
                     };
+                console.log(result);
                 res.json(result);
             })
         })
