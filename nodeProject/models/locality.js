@@ -6,7 +6,7 @@ var LocalitySchema = new Schema({
     _id: {type: ObjectId},
     zhName: {type: String},
     images: {type: Array},
-
+    isDone: {type: Boolean}
 });
 
 LocalitySchema.virtual('hasImage').get(function () {
@@ -40,7 +40,8 @@ LocalitySchema.statics.getTargetData = function(callback) {
 LocalitySchema.statics.setDoneTag = function(id, callback){
     // 测试是否可以直接传id？
     console.log(id);
-    this.update({_id:id},{isDone:true},{multi:false}, function(err, data){
+    this.findByIdAndUpdate(id, { $set:{isDone: true}}, function(err, data){
+        console.log(data.isDone);
         var state = true;
         if (err) {
             state = false
