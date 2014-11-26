@@ -1,15 +1,22 @@
 $(function(){
-    var requestUrl = '/picselection/ajax';
+    var requestUrl = '/picselection/ajax',
+        originData = null;
     $("#submit").on('click',function(){
         /*count*/
         var images = [],
             pics = document.forms[0].pic,
-            sum = 0;
+            sum = 0,
+            index = []
+        // 筛选索引
         for (var i = 0;i < pics.length; ++i){
             if (pics[i].checked){
-                images.push(pics[i].value);
+                index.push(i);
                 sum++;
             }
+        }
+        // 获取数据
+        for(var i in index){
+            images.push(JSON.stringify(originData[i]));
         }
 
         if (sum > 0){
@@ -18,14 +25,17 @@ $(function(){
                 var poiId = $('.city').attr("data-id"),
                     postData = {
                         poiId: poiId,
-                        images: images
+                        images : images
                     };
+                console.log(postData);
                 /*post data*/
                 $.ajax({
                     url : requestUrl,
-                    type: "POST",
+                    type: "post",
                     data: postData,
                     dataType: "json",
+                    traditional: true,
+                    dataProcess: false,
                     contentType: "application/x-www-form-urlencoded; charset=utf-8",
                     success : function (msg) {
                         if (msg.code == 0){
@@ -54,7 +64,10 @@ $(function(){
                 type: "GET",
                 data: {},
                 success : function (data) {
+                    console.log(data);
+
                     if (data.code == 0){
+                        originData = data.images;
                         /*modify the DOM*/
                         $('form').remove();
                         $('.city').children('b').text(data.name);
@@ -69,7 +82,7 @@ $(function(){
                         for(var i in data.images){
                             imgBlock =
                             '<div class="pics">' +
-                                '<img src="' + data.images[i].url + '?imageView2/1/w/300/h/200" width="300px" height="200px"/>' +
+                                '<img src="' + data.images[i].url + '?imageView2/1/w/225/h/150" width="225px" height="150px"/>' +
                                 '<input class="pic" name="pic" type="checkbox" value="' + data.images[i].url + '"/>' +
                             '</div>';
                             $('form').append(imgBlock);

@@ -77,8 +77,8 @@ input[type=checkbox] {
       }
       .pics{
       display: inline-block;
-      width:300px;
-      height:200px;
+      width: 225px;
+      height: 150px;
       padding:10px;
       padding-bottom: 50px;
       border:2px solid #898989;
