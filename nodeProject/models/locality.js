@@ -14,10 +14,11 @@ var db = mongoose.createConnection(config.dbgeo, function (err) {
 // db.open(config.dbgeo, 'geo');
 
 var LocalitySchema = new Schema({
-    _id: {type: ObjectId},
+    _id: {type: ObjectId, index: true},
     zhName: {type: String},
     images: {type: Array},
-    isDone: {type: Boolean}
+    isDone: {type: Boolean, index: true},
+    doing: {type: Boolean, default: false, index: true}
 });
 
 LocalitySchema.virtual('hasImage').get(function () {
@@ -35,16 +36,24 @@ LocalitySchema.statics.getTargetData = function(callback) {
 
     var conditions = {
             isDone: null,
-            $where: 'this.images.length > 0'
+            doing: null,
+            $where: 'this.images.length > 0',
+        },
+        update = {
+            $set: {doing: true}
         },
         fields = ['_id', 'zhName'].join(' '),
         options = {
-            hotness: -1,
+            select: fields,
+            // sort: {
+            //     hotness: -1,
+            //     // rating: -1
+            // },
         };
     console.log('in getTargetData');
         //callback(fields);
 
-    this.findOne(conditions, fields, options, function(err, data){
+    this.findOneAndUpdate(conditions, update, options, function(err, data){
         if(err) {
             return;
         }
@@ -57,7 +66,7 @@ LocalitySchema.statics.getTargetData = function(callback) {
 LocalitySchema.statics.setDoneTag = function(id, images, callback){
     // 测试是否可以直接传id？
     console.log(id);
-    this.findByIdAndUpdate(id, { $set:{isDone: true, images: images}}, function(err, data){
+    this.findByIdAndUpdate(id, { $set:{isDone: true, images: images, doing: false}}, function(err, data){
         if(err) {
             return;
         }

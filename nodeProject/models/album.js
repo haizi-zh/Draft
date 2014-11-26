@@ -16,7 +16,7 @@ var db = mongoose.createConnection(config.dbimagestore, function (err) {
 
 var AlbumSchema = new Schema({
     _id: {type: ObjectId},
-    itemIds: {type: Array},
+    itemIds: {type: Array, index: true},
     image: {type: Object}
 });
 
