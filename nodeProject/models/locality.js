@@ -1,6 +1,17 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
+var config = require('../config');
+
+var db = mongoose.createConnection(config.dbgeo, function (err) {
+  console.log(config.dbgeo);
+  if (err) {
+    console.error('connect to %s error: ', config.dbgeo, err.message);
+    process.exit(1);
+  }
+});
+// var db = mongoose.createConnection();
+// db.open(config.dbgeo, 'geo');
 
 var LocalitySchema = new Schema({
     _id: {type: ObjectId},
@@ -21,26 +32,35 @@ LocalitySchema.statics.sayHello = function(){
 
 // 获得一个满足要求的数据
 LocalitySchema.statics.getTargetData = function(callback) {
+
     var conditions = {
             isDone: null,
             $where: 'this.images.length > 0'
         },
-        fields = ['_id', 'zhName', 'images'].join(' '),
+        fields = ['_id', 'zhName'].join(' '),
         options = {
             hotness: -1,
         };
+    console.log('in getTargetData');
+        //callback(fields);
 
     this.findOne(conditions, fields, options, function(err, data){
-        //console.log(data);
+        if(err) {
+            return;
+        }
+        console.log(data);
         callback && callback(data)
     })
 };
 
 // 更新数据，标记完成的数据
-LocalitySchema.statics.setDoneTag = function(id, callback){
+LocalitySchema.statics.setDoneTag = function(id, images, callback){
     // 测试是否可以直接传id？
     console.log(id);
-    this.findByIdAndUpdate(id, { $set:{isDone: true}}, function(err, data){
+    this.findByIdAndUpdate(id, { $set:{isDone: true, images: images}}, function(err, data){
+        if(err) {
+            return;
+        }
         console.log(data.isDone);
         var state = true;
         if (err) {
@@ -65,4 +85,6 @@ LocalitySchema.statics.countDone = function(callback){
     });
 };
 
-mongoose.model('Locality', LocalitySchema, "Locality");
+db.model('Locality', LocalitySchema, "Locality");
+
+exports.Locality = db.model('Locality');
