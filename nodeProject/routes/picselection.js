@@ -19,7 +19,7 @@ router.get('/ajax', function(req, res) {
         var poiId = data._id,
             //images = data.images,
             name = data.zhName;
-        // TODO
+
         // 通过ID查询数据库，返回images数组！
         Album.findById(poiId, function(images) {
             var images = images;
@@ -28,7 +28,7 @@ router.get('/ajax', function(req, res) {
                 var totalDoc = total;
                 Locality.countDone(function(doneDocNum){
                     var done = doneDocNum,
-                        rest = totalDoc - done;
+                        rest = totalDoc - done,
                         result = {
                             code: 0,
                             poiId: poiId,
