@@ -45,15 +45,12 @@ LocalitySchema.statics.getTargetData = function(callback) {
         fields = ['_id', 'zhName'].join(' '),
         options = {
             select: fields,
-            // sort: {
-            //     hotness: -1,
-            //     // rating: -1
-            // },
         };
     console.log('in getTargetData');
-        //callback(fields);
 
-    this.findOneAndUpdate(conditions, update, options, function(err, data){
+    this.findOneAndUpdate(conditions, update, options)
+        .sort({hotness: -1, rating: -1})
+        .exec(function(err, data){
         if(err) {
             return;
         }
