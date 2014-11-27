@@ -82,7 +82,9 @@ $(function(){
                         for(var i in data.images){
                             imgBlock =
                             '<div class="pics">' +
-                                '<img src="' + data.images[i].url + '?imageView2/1/w/225/h/150" width="225px" height="150px"/>' +
+                                '<a href="' + data.images[i].url + '" target=_blank >' +
+                                    '<img src="' + data.images[i].url + '?imageView2/1/w/225/h/150" width="225px" height="150px"/>' +
+                                '</a>'
                                 '<input class="pic" name="pic" type="checkbox" value="' + data.images[i].url + '"/>' +
                             '</div>';
                             $('form').append(imgBlock);
