@@ -56,16 +56,30 @@ router.post('/ajax', function(req, res) {
             images[i] = JSON.parse(images[i]);
         }
     }else{
-        var temp = images;
+        var temp = JSON.parse(images);
         images = [];
         images.push(temp);
     }
-   
+
     if(id && images && images.length) {
         Locality.setDoneTag(id, images, function(state) {
             if (!state) {
                 res.json({code: 1})
             }
+            // TODO update Album
+            console.log(images);
+            var count = 0;
+            images.forEach(function(elem) {
+                var _id = elem._id,
+                    newImage = elem;
+                Album.updateImage(_id, newImage, function(doc){
+                    if(doc) {
+                        console.log(doc._id);
+                        count = count + 1;
+                        //console.log(count);
+                    }
+                })
+            });
             console.log('更新成功');
             res.json({code: 0});
         });
@@ -77,5 +91,5 @@ router.post('/ajax', function(req, res) {
 function isArray(obj){
     return (typeof obj=='object') && obj.constructor==Array;
 }
- 
+
 module.exports = router;

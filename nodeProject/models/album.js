@@ -26,17 +26,38 @@ AlbumSchema.statics.findById = function(id, callback) {
     var conditions = {
             itemIds: id,
         },
-        fields = ['image'].join(' ');
+        fields = ['_id', 'image'].join(' ');
 
     this.find(conditions, fields, function(err, docs){
+        var images = [];
+        if(err) {
+            callback && callback(images);
+            return ;
+        }
+
+        if ((typeof docs=='object') && docs.constructor==Array) {
+            for(var i in docs) {
+                var doc = docs[i],
+                    _id = doc._id;
+                doc.image && (doc.image._id = _id);
+                images.push(docs[i].image);
+            }
+        }
+        callback && callback(images)
+    })
+};
+
+AlbumSchema.statics.updateImage = function(id, image, callback) {
+    console.log('updateImage...');
+    var update = {
+        $set: {image: image}
+    };
+
+    this.findByIdAndUpdate(id, update, function(err, doc){
         if(err) {
             return ;
         }
-        var images = [];
-        for(var i in docs) {
-            images.push(docs[i].image);
-        }
-        callback && callback(images)
+        callback && callback(doc)
     })
 };
 
