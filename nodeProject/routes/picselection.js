@@ -50,9 +50,17 @@ router.post('/ajax', function(req, res) {
     var postData = req.body,
         id = postData.poiId,
         images = postData.images;
-    for(var i in images) {
-        images[i] = JSON.parse(images[i]);
+
+    if(isArray(images)) {
+        for(var i in images) {
+            images[i] = JSON.parse(images[i]);
+        }
+    }else{
+        var temp = images;
+        images = [];
+        images.push(temp);
     }
+   
     if(id && images && images.length) {
         Locality.setDoneTag(id, images, function(state) {
             if (!state) {
@@ -66,4 +74,8 @@ router.post('/ajax', function(req, res) {
     }
 });
 
+function isArray(obj){
+    return (typeof obj=='object') && obj.constructor==Array;
+}
+ 
 module.exports = router;

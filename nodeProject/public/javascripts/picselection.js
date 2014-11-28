@@ -7,18 +7,28 @@ $(function(){
             pics = document.forms[0].pic,
             sum = 0,
             index = []
-        // 筛选索引
-        for (var i = 0;i < pics.length; ++i){
-            if (pics[i].checked){
-                index.push(i);
-                sum++;
+        
+	// 筛选索引
+        if(!(pics[0] == null || pics[0] == undefined)) {
+            for (var i = 0;i < pics.length; ++i){
+                if (pics[i].checked){
+                    index.push(i);
+                    sum++;
+                }
+            }
+            console.log(index);
+            // 获取数据
+            for(var i in index){
+                var index_i = index[i];
+                console.log(index_i);
+                images.push(JSON.stringify(originData[index_i]));
+            }
+        }else{
+            if(pics.checked){
+                images.push(JSON.stringify(originData[0]));
+                sum = 1;
             }
         }
-        // 获取数据
-        for(var i in index){
-            images.push(JSON.stringify(originData[i]));
-        }
-
         if (sum > 0){
             if(confirm("当前选中了" + sum + "张图片。是否确认提交？")){
                 /*get poiId*/

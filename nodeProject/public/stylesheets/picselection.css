@@ -32,7 +32,7 @@ input[type=checkbox] {
       background: #fff;
       }
       input[type=checkbox]:checked::after {
-      content: url(http://ssl.gstatic.com/ui/v1/menu/checkmark.png);
+      content: url(checkmark.png);
       display: block;
       position: absolute;
       top: 11px;
