@@ -3,6 +3,7 @@ var router = express.Router();
 var util = require('util')
 var Locality = require('../models/locality').Locality;
 var Album = require('../models/album').Album;
+var Images = require('../models/images').Images;
 
 router.get('/', function(req, res) {
     res.render('picselection');
@@ -21,7 +22,7 @@ router.get('/ajax', function(req, res) {
             name = data.zhName;
 
         // 通过ID查询数据库，返回images数组！
-        Album.findById(poiId, function(images) {
+        Images.findById(poiId, function(images) {
             var images = images;
 
             Locality.countAll(function(total){
@@ -59,6 +60,7 @@ router.post('/ajax', function(req, res) {
         var temp = JSON.parse(images);
         images = [];
         images.push(temp);
+
     }
 
     if(id && images && images.length) {
@@ -67,18 +69,19 @@ router.post('/ajax', function(req, res) {
                 res.json({code: 1})
             }
             // TODO update Album
-            console.log(images);
             var count = 0;
             images.forEach(function(elem) {
-                var _id = elem._id,
-                    newImage = elem;
-                Album.updateImage(_id, newImage, function(doc){
-                    if(doc) {
-                        console.log(doc._id);
-                        count = count + 1;
-                        //console.log(count);
-                    }
-                })
+                var key = elem.key;
+                if(elem.cropHint != undefined && elem.cropHint != null) {
+                    var cropHint = elem.cropHint;
+                    Images.findByKeyAndUpdate(key, cropHint, function(doc){
+                        if(doc) {
+                            console.log(doc);
+                            count = count + 1;
+                            console.log(count);
+                        }
+                    })
+                }
             });
             console.log('更新成功');
             res.json({code: 0});

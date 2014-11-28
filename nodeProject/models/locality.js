@@ -69,7 +69,7 @@ LocalitySchema.statics.setDoneTag = function(id, images, callback){
         console.log(data.isDone);
         var state = true;
         if (err) {
-            state = false
+            state = false;
         }
         console.log(state);
         callback && callback(state)
