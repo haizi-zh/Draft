@@ -209,11 +209,11 @@ $(function(){
                                     left = parseInt(left);
                                     left = (left % 2) ? (left + 1) : left;
                                     right = parseInt(right);
-                                    right = (right % 2) ? (right + 1) : right;
+                                    right = (right % 2) ? (right - 1) : right;
                                     top = parseInt(top);
                                     top = (top % 2) ? (top + 1) : top;
                                     bottom = parseInt(bottom);
-                                    bottom = (bottom % 2) ? (bottom + 1) : bottom;
+                                    bottom = (bottom % 2) ? (bottom - 1) : bottom;
 
                                     cropHint = {
                                         "top": top,
