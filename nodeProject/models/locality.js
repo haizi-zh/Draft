@@ -54,7 +54,6 @@ LocalitySchema.statics.getTargetData = function(callback) {
         if(err) {
             return;
         }
-        console.log(data);
         callback && callback(data)
     })
 };
