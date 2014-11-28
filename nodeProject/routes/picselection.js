@@ -50,7 +50,7 @@ router.post('/ajax', function(req, res) {
     var postData = req.body,
         id = postData.poiId,
         images = postData.images;
-
+        console.log(postData);
     if(isArray(images)) {
         for(var i in images) {
             images[i] = JSON.parse(images[i]);
