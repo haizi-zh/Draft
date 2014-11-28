@@ -32,7 +32,7 @@ input[type=checkbox] {
       background: #fff;
       }
       input[type=checkbox]:checked::after {
-      content: url(checkmark.png);
+      content: url("/images/picselection/checkbox_checkmark.png");
       display: block;
       position: absolute;
       top: 11px;
@@ -83,6 +83,7 @@ input[type=checkbox] {
       padding-bottom: 50px;
       border:2px solid #898989;
       }
+      .pics .img{cursor: pointer;}
       .cityCnt{
       position: absolute;
       top: -15px;
@@ -91,3 +92,15 @@ input[type=checkbox] {
       body{
       font-size: 20px;
       }
+
+.sd_layer{display:none;position: fixed;left: 0;top: 0;width: 100%;height: 100%;background: #555;opacity: .5;filter:alpha(opacity:50)z-index: 11;z-index: 11;}
+.img_layer{display:none;position: fixed;left: 0;top: 0;width: 1034px;height: 634px;background: #fff;filter:alpha(opacity:50)z-index: 20;z-index: 20;}
+.img_layer .img_can{display:inline-block;width:800px;height:600px;border:2px solid #ccc;margin:10px;padding:5px;}
+.img_layer .coords{display:inline-block;width:160px;margin:10px;vertical-align: top;}
+
+      .imgSubmit{padding: 10px 20px;margin-top:30px;text-align:center;border: 1px solid #ccc;cursor: pointer;}
+      .coords{overflow: hidden;}
+      .coords label{display:block;margin-top:10px;}
+      .coords .labelBox{margin-top:20px;}
+      .coords .close{cursor:pointer;float:right;width:18px;height:18px;background: url(/images/picselection/btn-close01-normal.png) no-repeat;}
+      .coords .close:hover{background: url(/images/picselection/btn-close01-hover.png) no-repeat;}

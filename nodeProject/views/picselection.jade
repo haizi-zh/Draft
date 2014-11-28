@@ -1,8 +1,10 @@
 html
   head
-    link(rel="stylesheet", href="/stylesheets/picselection.css")
-    script(type='text/javascript', src='/javascripts/jquery-1.11.1.min.js')
-    script(type='text/javascript', src='/javascripts/picselection.js')
+    link(rel="stylesheet", href="/stylesheets/picselection/picselection.css")
+    link(rel="stylesheet", href="/stylesheets/common/jquery.Jcrop.min.css")
+    script(type='text/javascript', src='/javascripts/lib/jquery-1.11.1.min.js')
+    script(type='text/javascript', src='/javascripts/common/jquery.Jcrop.min.js')
+    script(type='text/javascript', src='/javascripts/picselection/picselection.js')
 
 
   body
@@ -26,4 +28,38 @@ html
             | 已完成:
             b *
       form
-
+    .sd_layer
+    .img_layer
+      .img_can
+      .coords#coords
+        i.close#close
+        #imgSubmit.imgSubmit 确定
+        .inline-labels
+          .labelBox
+            | 裁剪尺寸 :
+            label cutW
+              input#w(type="text" size="4" name="w")
+            label cutH
+              input#h(type="text" size="4" name="h")
+          .labelBox
+            | 当前尺寸 :
+            label curW
+              input#cw(type="text" size="4" name="cw")
+            label curH
+              input#ch(type="text" size="4" name="ch")
+          .labelBox
+            | 原图尺寸 :
+            label oriW
+              input#ow(type="text" size="4" name="ow")
+            label oriH
+              input#oh(type="text" size="4" name="oh")
+          .labelBox
+            | 选框坐标 :
+            label cX1
+              input#x1(type="text" size="4" name="x1")
+            label cY1
+              input#y1(type="text" size="4" name="y1")
+            label cX2
+              input#x2(type="text" size="4" name="x2")
+            label cY2
+              input#y2(type="text" size="4" name="y2")
