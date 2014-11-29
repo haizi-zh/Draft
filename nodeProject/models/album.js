@@ -48,7 +48,7 @@ AlbumSchema.statics.findById = function(id, callback) {
 };
 
 AlbumSchema.statics.updateImage = function(id, image, callback) {
-    console.log('updateImage...');
+    console.log('updateImage Album DB...');
     var update = {
         $set: {image: image}
     };
