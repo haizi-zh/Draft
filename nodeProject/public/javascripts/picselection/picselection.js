@@ -99,7 +99,7 @@ $(function(){
                             imgBlock =
                                 '<div class="pics">' +
                                     '<a class="img" data-id="' + i + '">' +
-                                        '<img src="' + imgBox[i].url + '?imageView2/1/w/225/h/150" width="225px" height="150px"/>' +
+                                        '<img src="' + imgBox[i].url + '?imageView2/2/w/225/h/150" width="225px" height="150px"/>' +
                                     '</a>' +
                                     '<input class="pic" name="pic" type="checkbox" value="' + i + '"/>' +
                                 '</div>';
@@ -290,7 +290,7 @@ $(function(){
                             imgBlock =
                                 '<div class="pics">' +
                                     '<a class="img" data-id="' + i + '">' +
-                                        '<img src="' + imgBox[i].url + '?imageView2/1/w/225/h/150" width="225px" height="150px"/>' +
+                                        '<img src="' + imgBox[i].url + '?imageView2/2/w/225/h/150" width="225px" height="150px"/>' +
                                     '</a>' +
                                     '<input class="pic" name="pic" type="checkbox" value="' + i + '"/>' +
                                 '</div>';
