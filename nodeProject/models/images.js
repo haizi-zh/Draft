@@ -23,15 +23,17 @@ var ImagesSchema = new Schema({
 });
 
 ImagesSchema.statics.findById = function(id, callback) {
-    console.log('in.......');
+    console.log("city Id to find images:  " + id);
     var conditions = {
             itemIds: id,
         },
         fields = ['key', 'h', 'w'].join(' ');
-
+    console.log('find images BEGIN');
     this.find(conditions, fields)
         .sort({size: -1})
         .exec(function(err, docs){
+	console.log('find images END, and show result:');
+	console.log(docs);
         var images = [];
             if(err) {
                 callback && callback(images);
