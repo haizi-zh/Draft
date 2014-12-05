@@ -55,7 +55,7 @@ router.get('/ajax', function(req, res) {
         var poiId = data._id,
             //images = data.images,
             name = data.zhName;
-
+        console.log(poiId);
         // 通过ID查询数据库，返回images数组！
         Images.findById(poiId, function(images) {
             var images = images;
