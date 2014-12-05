@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.ObjectId;
 var config = require('../config');
 
+/*
 var db = mongoose.createConnection(config.dbimagestore, function (err) {
     console.log(config.dbimagestore);
   if (err) {
@@ -63,3 +64,4 @@ AlbumSchema.statics.updateImage = function(id, image, callback) {
 
 db.model('Album', AlbumSchema, "Album");
 exports.Album = db.model('Album');
+*/

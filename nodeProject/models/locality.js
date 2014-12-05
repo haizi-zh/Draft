@@ -37,6 +37,7 @@ LocalitySchema.statics.getTargetData = function(callback) {
     var conditions = {
             isDone: null,
             doing: null,
+            images: { $exists: true},
             $where: 'this.images.length > 0',
         },
         update = {
@@ -52,7 +53,9 @@ LocalitySchema.statics.getTargetData = function(callback) {
         .sort({hotness: -1, rating: -1})
         .exec(function(err, data){
         if(err) {
-            return;
+	    console.log('ERROR in "find target city"');
+            console.log(err);
+	    return;
         }
         callback && callback(data)
     })
