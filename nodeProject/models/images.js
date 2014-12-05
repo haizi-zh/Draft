@@ -33,7 +33,6 @@ ImagesSchema.statics.findById = function(id, callback) {
         .sort({size: -1})
         .exec(function(err, docs){
 	console.log('find images END, and show result:');
-	console.log(docs);
         var images = [];
             if(err) {
                 callback && callback(images);

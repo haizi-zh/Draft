@@ -97,6 +97,7 @@ LocalitySchema.statics.searchByZhname = function(name, callback){
     this.findOneAndUpdate(conditions, update, options)
         .exec(function(err, data){
         if(err) {
+	    console.log('search data error');
             return;
         }
         callback && callback(data)

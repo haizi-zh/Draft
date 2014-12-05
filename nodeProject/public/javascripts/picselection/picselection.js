@@ -426,6 +426,7 @@ $(function(){
                 },
                 error : function () {
                     $('#J_confirmSearch').attr('data-clicked', 'false');
+		    $('#J_confirmSearch').arrt('data-last', '');
                     alert('网络太卡 或者 代码罢工，赶紧呼叫程序猿');
                 }
             })
