@@ -43,7 +43,7 @@ ImagesSchema.statics.findById = function(id, callback) {
                     var doc           = docs[i],
                         image         = {},
                         host          = "http://lvxingpai-img-store.qiniudn.com/";
-                    console.log(doc);
+
                     image.url = host + doc.key;
                     image.key = doc.key;
                     image.h   = doc.h;
@@ -52,7 +52,7 @@ ImagesSchema.statics.findById = function(id, callback) {
                     images.push(image);
                 }
             }
-            console.log(images);
+
             callback && callback(images)
     })
 };

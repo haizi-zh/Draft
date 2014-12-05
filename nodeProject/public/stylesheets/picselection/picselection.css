@@ -104,3 +104,26 @@ input[type=checkbox] {
       .coords .labelBox{margin-top:20px;}
       .coords .close{cursor:pointer;float:right;width:18px;height:18px;background: url(/images/picselection/btn-close01-normal.png) no-repeat;}
       .coords .close:hover{background: url(/images/picselection/btn-close01-hover.png) no-repeat;}
+
+.search {
+    display: block;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+
+input#J_search_text {
+    height: 30px;
+    font-size: 18px;
+}
+
+div#J_confirmSearch {
+    display: inline-block;
+    margin-left: 20px;
+    position: absolute;
+    height: 30px;
+    padding-left: 10px;
+    cursor: pointer;
+    width: 50px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+}

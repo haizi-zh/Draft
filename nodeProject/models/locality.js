@@ -66,13 +66,37 @@ LocalitySchema.statics.setDoneTag = function(id, images, callback){
         if(err) {
             return;
         }
-        console.log(data.isDone);
         var state = true;
         if (err) {
             state = false;
         }
-        console.log(state);
         callback && callback(state)
+    })
+};
+
+// 通过中文名字查询数据
+LocalitySchema.statics.searchByZhname = function(name, callback){
+    if( !((typeof name == 'string') && name.constructor == String)) {
+        return ;
+    }
+    var conditions = {
+            zhName: name,
+        },
+        update = {
+            $set: {doing: true, isDone: null}
+        },
+        fields = ['_id', 'zhName'].join(' '),
+        options = {
+            select: fields,
+        };
+    console.log('in search certain spot');
+
+    this.findOneAndUpdate(conditions, update, options)
+        .exec(function(err, data){
+        if(err) {
+            return;
+        }
+        callback && callback(data)
     })
 };
 
