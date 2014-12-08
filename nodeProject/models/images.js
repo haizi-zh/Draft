@@ -26,6 +26,7 @@ ImagesSchema.statics.findById = function(id, callback) {
     console.log("city Id to find images:  " + id);
     var conditions = {
             itemIds: id,
+            $where: "this.w >= this.h",
         },
         fields = ['key', 'h', 'w'].join(' ');
     console.log('find images BEGIN');
@@ -53,7 +54,7 @@ ImagesSchema.statics.findById = function(id, callback) {
                     images.push(image);
                 }
             }
-
+            console.log(images);
             callback && callback(images)
     })
 };
