@@ -86,7 +86,7 @@ LocalitySchema.statics.searchByZhname = function(name, callback){
             zhName: name,
         },
         update = {
-            $set: {doing: true, isDone: null}
+            //$set: {doing: true, isDone: null}
         },
         fields = ['_id', 'zhName'].join(' '),
         options = {
