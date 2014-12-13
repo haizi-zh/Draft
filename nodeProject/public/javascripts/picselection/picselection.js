@@ -1,5 +1,5 @@
 $(function(){
-    var requestUrl = '/picselection/ajax',
+    var requestUrl = window.location.pathname + '/ajax',
         imgBox = null,
         cropHints = [];
     $("#submit").on('click',function(){
@@ -245,7 +245,7 @@ $(function(){
     $('#J_confirmSearch').click(function(){
         var search_text_row = $('#J_search_text').val(),
             search_text = $.trim(search_text_row),
-            url = '/picselection/search';
+            url = window.location.pathname + '/search';
 
 
         var lastInput = $(this).attr('data-last');
