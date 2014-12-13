@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var util = require('util')
-var Locality = require('../models/locality').Locality;
-var Album = require('../models/album').Album;
+var ViewSpot = require('../models/viewspot').ViewSpot;
 var Images = require('../models/images').Images;
 
 router.get('/', function(req, res) {
@@ -11,9 +10,10 @@ router.get('/', function(req, res) {
 
 router.get('/search', function(req, res) {
     var seachText = req.query.search_text;
+    console.log('开始查询:');
     console.log(seachText);
 
-    Locality.searchByZhname(seachText, function(data){
+    ViewSpot.searchByZhname(seachText, function(data){
         if(!data) {
             res.json({code: 1});
         }
@@ -24,9 +24,9 @@ router.get('/search', function(req, res) {
         Images.findById(poiId, function(images) {
             var images = images;
 
-            Locality.countAll(function(total){
+            ViewSpot.countAll(function(total){
                 var totalDoc = total;
-                Locality.countDone(function(doneDocNum){
+                ViewSpot.countDone(function(doneDocNum){
                     var done = doneDocNum,
                         rest = totalDoc - done,
                         result = {
@@ -48,7 +48,7 @@ router.get('/search', function(req, res) {
 router.get('/ajax', function(req, res) {
     console.log('----get----');
 
-    Locality.getTargetData(function(data) {
+    ViewSpot.getTargetData(function(data) {
         if (!data) {
             res.json({code: 1});
         }
@@ -60,9 +60,9 @@ router.get('/ajax', function(req, res) {
         Images.findById(poiId, function(images) {
             var images = images;
 
-            Locality.countAll(function(total){
+            ViewSpot.countAll(function(total){
                 var totalDoc = total;
-                Locality.countDone(function(doneDocNum){
+                ViewSpot.countDone(function(doneDocNum){
                     var done = doneDocNum,
                         rest = totalDoc - done,
                         result = {
@@ -98,7 +98,7 @@ router.post('/ajax', function(req, res) {
     }
 
     if(id && images && images.length) {
-        Locality.setDoneTag(id, images, function(state) {
+        ViewSpot.setDoneTag(id, images, function(state) {
             if (!state) {
                 res.json({code: 1})
             }
