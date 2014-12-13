@@ -37,6 +37,7 @@ LocalitySchema.statics.getTargetData = function(callback) {
     var conditions = {
             isDone: null,
             doing: null,
+	    hasImage: true,
             images: { $exists: true},
             $where: 'this.images.length >= 0',
         },
