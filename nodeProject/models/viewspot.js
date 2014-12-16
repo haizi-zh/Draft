@@ -30,7 +30,7 @@ ViewspotScheme.statics.getTargetData = function(callback) {
             isDone: null,
             doing: null,
             images: {$ne: null},
-            $where: 'this.images.length >= 0',
+            $where: 'this.images.length > 0',
         },
         update = {
             $set: {doing: true}
