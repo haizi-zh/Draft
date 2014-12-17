@@ -1,9 +1,12 @@
-block content
-  h1= title
-  p hello!
-  a(href='/picselection') 城市&国家的图片()
-  br
-  br
-  a(href='/viewspot') 景点图片
+link(href="/stylesheets/index.css" rel="stylesheet")
 
-
+div.login_panel
+    form(action='/login', method='post')
+      div
+        label 用户名:
+        input(type='text', name='username')
+      div
+        label 密码:
+        input(type='password', name='password')
+      div.submit
+        input(type='submit', value='登录')

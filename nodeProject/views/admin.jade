@@ -1,0 +1,14 @@
+link(href="/stylesheets/index.css" rel="stylesheet")
+
+div.skip
+    a(href='/switch')返回上一页
+div.login_panel
+    form(action='/addmenber', method='post')
+      div
+        label 用户名:
+        input(type='text', name='username')
+      div
+        label 密码:
+        input(type='password', name='password')
+      div.submit
+        input(type='submit', value='添加用户')

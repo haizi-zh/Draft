@@ -55,6 +55,11 @@ $(function(){
                     success : function (msg) {
                         if (msg.code == 0){
                             alert('提交成功.');
+                            console.log(msg);
+                            if(msg.workload !== 'keep'){
+                                $('.work').children('b').text(parseInt(msg.workload));
+                            }
+
                             $(this).attr('data-submit','true');
                         }
                         else{

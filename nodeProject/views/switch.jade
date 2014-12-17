@@ -1,0 +1,19 @@
+block content
+  h1= title
+  p hello!
+  a(href='/picselection') 城市和国家的图片
+  br
+  br
+  a(href='/viewspot') 景点的图片
+  br
+  br
+  br
+  if user
+    if user.admin == true
+      br
+      br
+      a(href='/admin') 管理员界面
+  if user
+    br
+    br
+    a(href='/logout') 退出登录

@@ -54,7 +54,6 @@ ImagesSchema.statics.findById = function(id, callback) {
                     images.push(image);
                 }
             }
-            console.log(images);
             callback && callback(images)
     })
 };
