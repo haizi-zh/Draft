@@ -37,8 +37,8 @@ LocalitySchema.statics.getTargetData = function(callback) {
     var conditions = {
             isDone: null,
             doing: null,
-	    hasImage: true,
-            images: { $exists: true},
+	        hasImage: true,
+            images: { $ne: null},
             $where: 'this.images.length >= 0',
         },
         update = {
@@ -66,7 +66,7 @@ LocalitySchema.statics.getTargetData = function(callback) {
 LocalitySchema.statics.setDoneTag = function(id, images, callback){
     // 测试是否可以直接传id？
     console.log(id);
-    this.findByIdAndUpdate(id, { $set:{isDone: true, images: images, doing: false}}, function(err, data){
+    this.findByIdAndUpdate(id, { $set:{isDone: true, images: images, doing: false}}, function(err, data) {
         if(err) {
             return;
         }
@@ -74,7 +74,7 @@ LocalitySchema.statics.setDoneTag = function(id, images, callback){
         if (err) {
             state = false;
         }
-        callback && callback(state)
+        callback && callback(data, state)
     })
 };
 

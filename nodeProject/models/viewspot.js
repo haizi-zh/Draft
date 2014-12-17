@@ -65,7 +65,7 @@ ViewspotScheme.statics.setDoneTag = function(id, images, callback){
         if (err) {
             state = false;
         }
-        callback && callback(state)
+        callback && callback(data, state)
     })
 };
 

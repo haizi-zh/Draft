@@ -107,7 +107,7 @@ input[type=checkbox] {
 
 .search {
     display: block;
-    padding-top: 30px;
+    margin-top: 20px;
     padding-left: 40px;
 }
 
@@ -152,4 +152,9 @@ div#J_confirmSearch {
 
 .ui_upward_icon:hover {
     color : #636363
+}
+
+.user {
+float: right;
+margin: 4px auto;
 }

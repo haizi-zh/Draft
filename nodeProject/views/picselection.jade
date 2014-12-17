@@ -10,10 +10,21 @@ html
 
   body
     div.container
+      a(href='/switch')返回上一级
+      br
+      br
+      a(href='/logout')退出登录
+      div.user
+        div.username  Lxper : #{user.username}
+        div.work
+          | I Done:
+          b *
+
       div.search 按名字查找:
         input(type="text" name="search" id="J_search_text")
         div#J_confirmSearch(data-clicked="false")
           | 搜索
+
       div.hd
         div.city(data-id='111')
           | 名字:
@@ -27,10 +38,10 @@ html
           | 下一个
         div.cityCnt
           div.restCity
-            | 未完成:
+            | Total:
             b *
           div.doneCity
-            | 已完成:
+            | We Done:
             b *
 
 
