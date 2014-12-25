@@ -8,7 +8,7 @@ var session = require('cookie-session');
 var passport = require("passport");
 
 var routes = require('./routes/index');
-var picselection = require('./routes/picselection');
+var locality = require('./routes/locality');
 var viewspot = require('./routes/viewspot');
 
 var app = express();
@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
-app.use('/picselection', picselection);
+app.use('/locality', locality);
 app.use('/viewspot', viewspot);
 
 // catch 404 and forward to error handler

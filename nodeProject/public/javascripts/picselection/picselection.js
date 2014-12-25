@@ -1,6 +1,13 @@
 $(function(){
-    var requestUrl = window.location.pathname + '/ajax',
-        imgBox = null,
+    var curPath = window.location.pathname,
+        endIndex = curPath.indexOf('/cms'),
+        requestUrl = '';
+    if(endIndex < 0) {
+        requestUrl = window.location.pathname + '/ajax';
+    }else{
+        requestUrl = curPath.substring(0, endIndex) + '/ajax';
+    }
+    var imgBox = null,
         cropHints = [];
     $("#submit").on('click',function(){
         /*count*/
@@ -247,10 +254,19 @@ $(function(){
     });
 
     // 查找
+    var search_text_row = '';
     $('#J_confirmSearch').click(function(){
-        var search_text_row = $('#J_search_text').val(),
-            search_text = $.trim(search_text_row),
-            url = window.location.pathname + '/search';
+        search_text_row = $('#J_search_text').val();
+        var search_text = $.trim(search_text_row);
+
+        var curPath = window.location.pathname,
+            endIndex = curPath.indexOf('/cms'),
+            requestUrl = '';
+        if(endIndex < 0) {
+            requestUrl = window.location.pathname + '/search';
+        }else{
+            requestUrl = curPath.substring(0, endIndex) + '/search';
+        }
 
 
         var lastInput = $(this).attr('data-last');
@@ -265,13 +281,13 @@ $(function(){
         }else{
             $('#J_confirmSearch').attr('data-clicked', 'false');
         }
-
+        console.log(requestUrl);
         var clickFlag = $(this).attr('data-clicked');
         if('false' == clickFlag){
             $('#J_confirmSearch').attr('data-clicked', 'true');
             $(this).attr('data-last', search_text)
             $.ajax({
-                url : url,
+                url : requestUrl,
                 type: "GET",
                 data: {search_text: search_text},
                 success : function (data) {
@@ -431,7 +447,7 @@ $(function(){
                 },
                 error : function () {
                     $('#J_confirmSearch').attr('data-clicked', 'false');
-		    $('#J_confirmSearch').arrt('data-last', '');
+		            $('#J_confirmSearch').attr('data-last', '');
                     alert('网络太卡 或者 代码罢工，赶紧呼叫程序猿');
                 }
             })
@@ -440,7 +456,17 @@ $(function(){
 
 
     $(window).load(function(){
-        $("#next").trigger('click');
+        var urlPath = window.location.href,
+            hasCMS  = urlPath.indexOf("cms");
+        if(hasCMS < 0) {
+            $("#next").trigger('click');
+        }else{
+            var qurContentIndex = urlPath.indexOf('=') + 1,
+                search_text = decodeURI(urlPath.substring(qurContentIndex));
+            $('#J_search_text').val(search_text);
+            $('#J_confirmSearch').trigger('click');
+        }
+
         var wHeight = $(window).height(),
             wWidth = $(window).width(),
             imgBoxHeight = 634,
