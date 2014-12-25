@@ -12,6 +12,12 @@ router.get('/', pass.ensureAuthenticated, function(req, res) {
     });
 });
 
+router.get('/cms', pass.ensureAuthenticated, function(req, res) {
+    res.render('picselection', {
+        user: req.user,
+    });
+});
+
 router.get('/search', pass.ensureAuthenticated, function(req, res) {
     var seachText = req.query.search_text;
     console.log('开始查询:');
