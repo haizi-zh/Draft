@@ -56,9 +56,23 @@ input[type=checkbox] {
       margin: 10px;
       }
       b{
-      color: #808069;
+      color: black;
       margin:10px;
       }
+
+      .work b {
+          color: #08EF74;
+      }
+      .imgCnt b {
+          color: red;
+      }
+      .doneCity b {
+          color: blue;
+      }
+      .username {
+          color: rgb(5, 148, 78);
+      }
+
       .submit{
       position: absolute;
       padding: 10px 20px;
@@ -67,6 +81,17 @@ input[type=checkbox] {
       border: 1px solid #ccc;
       cursor: pointer;
       }
+
+      .submit:hover{
+      position: absolute;
+      padding: 10px 20px;
+      top: 0px;
+      right: 280px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background-color: #FFAB00;
+      }
+
       .next{
       position: absolute;
       padding: 10px 20px;
@@ -75,6 +100,17 @@ input[type=checkbox] {
       border: 1px solid #ccc;
       cursor: pointer;
       }
+    
+      .next:hover{
+      position: absolute;
+      padding: 10px 20px;
+      top: 0px;
+      right: 130px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background-color: #407E97;
+      }
+
       .pics{
       display: inline-block;
       width: 225px;
@@ -87,7 +123,7 @@ input[type=checkbox] {
       .cityCnt{
       position: absolute;
       top: -15px;
-      right: -25px;
+      right: -90px;
       }
       body{
       font-size: 20px;
@@ -111,6 +147,7 @@ input[type=checkbox] {
     padding-left: 40px;
 }
 
+
 input#J_search_text {
     height: 30px;
     font-size: 18px;
@@ -126,6 +163,9 @@ div#J_confirmSearch {
     width: 50px;
     line-height: 30px;
     border: 1px solid #ccc;
+}
+#J_confirmSearch:hover{
+    background-color: green;
 }
 
 .ui_upward_wrapper {
