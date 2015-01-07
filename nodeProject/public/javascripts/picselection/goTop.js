@@ -13,7 +13,6 @@ jQuery(function($){
     var isfoot = foot.length;
     var top = 600;
     win.on("scroll",function(){
-        console.log('scroll...');
         var doc_w = doc.width(); //document.width
         var doc_h = doc.height(); //document.height
         var win_w = win.width(); //window.width
@@ -36,12 +35,9 @@ jQuery(function($){
             icon.fadeOut(300);
         }
         else if(doc_w > 1200) {
-            console.log('fadeIn >1200');
-            console.log(top);
             icon.css({"left":left,"right":"auto","top":top}).fadeIn(300);
         }
         else {
-            console.log('fadeIn <1200');
             icon.css({"left":"auto","right":right,"top":top}).fadeIn(300);
         }
     });

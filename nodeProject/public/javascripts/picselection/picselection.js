@@ -37,7 +37,7 @@ $(function(){
         }else{
             if(pics.checked){
             	if(cropHints[0].bottom != 0 && cropHints[0].right != 0) {
-            		imgBox[0].cropHint = cropHints[0];	
+            		imgBox[0].cropHint = cropHints[0];
             	}
                 images.push(JSON.stringify(imgBox[0]));
                 sum = 1;
@@ -89,14 +89,16 @@ $(function(){
     $("#next").on('click',function(){
         $('#J_search_text').val('');
         if ($('#submit').attr('data-submit') == "true"){
+            $('.loading-bar-container').slideDown(400);
             $.ajax({
                 url : requestUrl,
                 type: "GET",
                 data: {},
                 success : function (data) {
                     console.log(data);
-
+                    $('.loading-bar-container').slideUp(400);
                     if (data.code == 0){
+
                         imgBox = data.images;
                         /*modify the DOM*/
                         $('form').remove();
