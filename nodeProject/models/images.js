@@ -44,7 +44,8 @@ ImagesSchema.statics.findById = function(id, callback) {
                 for(var i in docs) {
                     var doc           = docs[i],
                         image         = {},
-                        host          = "http://lvxingpai-img-store.qiniudn.com/";
+                        //host        = "http://lvxingpai-img-store.qiniudn.com/";
+                        host          = "http://images.taozilvxing.com/";
 
                     image.url = host + doc.key;
                     image.key = doc.key;
