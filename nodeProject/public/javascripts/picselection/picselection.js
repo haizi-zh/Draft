@@ -36,7 +36,9 @@ $(function(){
             }
         }else{
             if(pics.checked){
-                imgBox[0].cropHint = cropHints[0];
+            	if(cropHints[0].bottom != 0 && cropHints[0].right != 0) {
+            		imgBox[0].cropHint = cropHints[0];	
+            	}
                 images.push(JSON.stringify(imgBox[0]));
                 sum = 1;
             }
