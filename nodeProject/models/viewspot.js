@@ -29,8 +29,7 @@ ViewspotScheme.statics.getTargetData = function(callback) {
     var conditions = {
             isDone: null,
             doing: null,
-            images: {$ne: null},
-            $where: 'this.images.length > 0',
+            images: {$ne: null}
         },
         update = {
             $set: {doing: true}
@@ -42,7 +41,7 @@ ViewspotScheme.statics.getTargetData = function(callback) {
     console.log('in getTargetData');
 
     this.findOneAndUpdate(conditions, update, options)
-        .sort({rating: -1})
+        .sort({hotness: -1, rating: -1})
         .exec(function(err, data){
         if(err) {
 	    console.log('ERROR in "find target city"');
